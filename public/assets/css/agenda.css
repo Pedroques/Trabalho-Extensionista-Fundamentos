@@ -1,7 +1,6 @@
 /* ------------------- Geral Início ------------------- */
 body {
     font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
-
 }
 
 a {
@@ -21,11 +20,15 @@ main {
     text-align: center;
 }
 
-h1 {
-    padding: 0 auto;
+iframe {
+    width: 100%;
+    max-width: 1080px;
+    height: 450px;
+    display: block;
+    margin: 0 auto;
 }
 
-p {}
+
 
 /* -------------------- Geral Fim -------------------- */
 
@@ -74,32 +77,32 @@ p {}
 
 /* -------------------- Main Início -------------------- */
 
-#cardsEx {
-    border-radius: 12px;
-    border-: #ee8f22;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 10px;
+
+
+#cards {
+    padding: 0 !important;
+    margin: 0 auto;
 }
 
-#cardsEx .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+.cardEx:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
 }
 
-#cardsEx .card-title {
+.cardEx .card-title {
     color: #ee8f22;
-    font-weight: bold;
-    font-size: 1.3rem;
 }
 
-#cardsEx .card-text {
+.cardEx .card-text {
     font-size: 0.95rem;
 }
 
 #carouselExampleAutoplaying {
-    border: 1px solid #ddd;
+    border: 1px solid #ee8f22;
     border-radius: 4px;
-    padding: 5px;
+    padding: 0;
     margin: 0 auto;
     position: relative;
 }
@@ -109,27 +112,105 @@ p {}
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 #carouselExampleAutoplaying .carousel-item {
-    height: 720px;
+    height: 60vw;
+    max-height: 720px;
 }
 
 #carouselExampleAutoplaying .carousel-item img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    margin: 0 auto;
+}
+
+.botaoReserve {
+    margin: 30px;
+    background-color: #ee8f22;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #fab260;
+    max-width: 450px;
+    height: 70px;
+    font-size: x-large;
+}
+
+.botaoReserve:hover {
+    background-color: white;
+    color: #ee8f22;
+    border-color: #fab260;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+main p {
+    font-size: x-large;
+    max-width: 1080px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+}
+
+main h1 {
+    max-width: 1080px;
+    margin: 20px auto;
+    text-align: center;
+    color: #ee8f22;
 }
 
 /* -------------------- Main Fim -------------------- */
 
-
-
-
 /* -------------------- Footer Início -------------------- */
+/* -------------------- Footer -------------------- */
+.rodape {
+    background-color: #0d6efd;
+    color: white;
+    padding: 40px 20px 20px 20px;
+    font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
+    font-size: x-large;
+    text-align: center;
+}
 
+.rodape h3 {
+    color: #fab260;
+    font-size: xx-large;
+
+}
+
+.rodape a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.rodape a:hover {
+    color: #fab260;
+}
+
+.rodape-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1080px;
+    margin: 0 auto 20px auto;
+}
+
+.iconeRede {
+    width: 50px;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+}
+
+.iconeRede:hover {
+    transform: scale(1.2);
+}
+
+.copyright {
+    border-top: 1px solid #fab260;
+    padding-top: 10px;
+}
 
 /* -------------------- Footer Fim -------------------- */
 
@@ -144,7 +225,16 @@ p {}
         border-bottom: 2px #ee8f22 solid;
     }
 
+    #carouselExampleAutoplaying .carousel-item {
+        max-height: 360px;
+    }
 
+    iframe {
+        height: 300px;
+    }
+    main{
+        padding: 5px;
+    }
 }
 
 @media screen and (min-width: 720px) {
@@ -158,7 +248,6 @@ p {}
     #videoBanner {
         max-width: 1080px;
     }
-
 
 }
 
