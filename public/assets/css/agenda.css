@@ -1,0 +1,165 @@
+/* ------------------- Geral Início ------------------- */
+body {
+    font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+}
+
+main {
+    padding-top: 90px;
+    text-align: center;
+}
+
+h1 {
+    padding: 0 auto;
+}
+
+p {}
+
+/* -------------------- Geral Fim -------------------- */
+
+
+/* ------------------- NavBar Início ------------------- */
+#imgLogo {
+    max-width: 180px;
+}
+
+
+#homeNavBar,
+#agendaNavBar {
+    color: white;
+    font-size: 30px;
+    margin-left: 15px;
+    transition: transform 0.6s ease;
+    transform: scale(1);
+
+}
+
+#homeNavBar:hover,
+#agendaNavBar:hover {
+    transition: color 0.5s transform;
+    transition: transform 0.5s ease;
+    color: #fab260;
+    transform: scale(1.1);
+}
+
+#imgLogo {
+    transition: transform 0.6s ease;
+
+}
+
+#imgLogo:hover {
+    transform: scale(1.1);
+
+}
+
+.navbarEdit {
+    border-bottom: 3px solid #ee8f22;
+}
+
+/* -------------------- NavBar Fim -------------------- */
+
+
+
+/* -------------------- Main Início -------------------- */
+
+#cardsEx {
+    border-radius: 12px;
+    border-: #ee8f22;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+}
+
+#cardsEx .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+#cardsEx .card-title {
+    color: #ee8f22;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+#cardsEx .card-text {
+    font-size: 0.95rem;
+}
+
+#carouselExampleAutoplaying {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#carrosselMain {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#carouselExampleAutoplaying .carousel-item {
+    height: 720px;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* -------------------- Main Fim -------------------- */
+
+
+
+
+/* -------------------- Footer Início -------------------- */
+
+
+/* -------------------- Footer Fim -------------------- */
+
+/* -------------------- Media Query Início -------------------- */
+
+@media screen and (max-width: 720px) {
+    .navbarEdit {
+        text-align: center;
+    }
+
+    #homeNavBar {
+        border-bottom: 2px #ee8f22 solid;
+    }
+
+
+}
+
+@media screen and (min-width: 720px) {
+
+    #video {
+        text-align: center;
+        padding: 30px;
+
+    }
+
+    #videoBanner {
+        max-width: 1080px;
+    }
+
+
+}
+
+/* -------------------- Media Query Fim -------------------- */

@@ -1,0 +1,247 @@
+/* ------------------- Geral Início ------------------- */
+body {
+    font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+}
+
+main {
+    padding-top: 90px;
+    text-align: center;
+}
+
+iframe {
+    width: 1080px;
+    height: 720px;
+}
+
+
+
+
+/* -------------------- Geral Fim -------------------- */
+
+
+/* ------------------- NavBar Início ------------------- */
+#imgLogo {
+    max-width: 180px;
+}
+
+
+#homeNavBar,
+#agendaNavBar {
+    color: white;
+    font-size: 30px;
+    margin-left: 15px;
+    transition: transform 0.6s ease;
+    transform: scale(1);
+
+}
+
+#homeNavBar:hover,
+#agendaNavBar:hover {
+    transition: color 0.5s transform;
+    transition: transform 0.5s ease;
+    color: #fab260;
+    transform: scale(1.1);
+}
+
+#imgLogo {
+    transition: transform 0.6s ease;
+
+}
+
+#imgLogo:hover {
+    transform: scale(1.1);
+
+}
+
+.navbarEdit {
+    border-bottom: 3px solid #ee8f22;
+}
+
+/* -------------------- NavBar Fim -------------------- */
+
+
+
+/* -------------------- Main Início -------------------- */
+
+#cards {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+}
+
+.cardEx:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+
+}
+
+.cardEx .card-title {
+    color: #ee8f22;
+}
+
+.cardEx .card-text {
+    font-size: 0.95rem;
+}
+
+#carouselExampleAutoplaying {
+    border: 1px solid #ee8f22;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#carrosselMain {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#carouselExampleAutoplaying .carousel-item {
+    height: 720px;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.botaoReserve {
+    margin: 30px;
+    background-color: #ee8f22;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #fab260;
+    width: 450px;
+    height: 70px;
+    font-size: xx-large;
+}
+
+.botaoReserve:hover {
+    background-color: white;
+    color: #ee8f22;
+    border-color: #fab260;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+main p {
+    font-size: x-large;
+    max-width: 1080px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+}
+
+main h1 {
+    max-width: 1080px;
+    margin: 20px auto;
+    text-align: center;
+    color: #ee8f22;
+}
+
+/* -------------------- Main Fim -------------------- */
+
+/* -------------------- Footer Início -------------------- */
+/* -------------------- Footer -------------------- */
+.footer {
+    background-color: #0d6efd;
+    color: white;
+    padding: 40px 20px 20px 20px;
+    font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
+    font-size: x-large;
+    text-align: center;
+}
+
+.footer h3 {
+    color: #fab260;
+    font-size: xx-large;
+
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fab260;
+}
+
+.rodape-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1080px;
+    margin: 0 auto 20px auto;
+}
+
+.iconeRede {
+    width: 50px;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+}
+
+.iconeRede:hover {
+    transform: scale(1.2);
+}
+
+.footer-copy {
+    border-top: 1px solid #fab260;
+    padding-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* -------------------- Footer Fim -------------------- */
+
+/* -------------------- Media Query Início -------------------- */
+
+@media screen and (max-width: 720px) {
+    .navbarEdit {
+        text-align: center;
+    }
+
+    #homeNavBar {
+        border-bottom: 2px #ee8f22 solid;
+    }
+
+    #carouselExampleAutoplaying .carousel-item {
+        max-height: 360px;
+    }
+
+    iframe {
+        width: 100vw;
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 720px) {
+
+    #video {
+        text-align: center;
+        padding: 30px;
+
+    }
+
+    #videoBanner {
+        max-width: 1080px;
+    }
+
+}
+
+/* -------------------- Media Query Fim -------------------- */
