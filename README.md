@@ -3,8 +3,9 @@ Trabalho Extensionista Fundamentos de Sistema de Informação do professor Clóv
 
 # Alunos
 Ana Luisa
+Christian
+Fernado
 João Amaral
 João Vieira
-Rodrigo
-Christian
 Pedro Martins
+Rodrigo
