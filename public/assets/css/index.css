@@ -1,5 +1,6 @@
 /* ------------------- Geral Início ------------------- */
 body {
+    background-color: #ffffff;
     font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
 }
 
@@ -16,6 +17,12 @@ header {
 }
 
 main {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 0 15px;
+    border-left: 2px solid #ee8f227d;
+    border-right: 2px solid #ee8f227d;
     padding-top: 90px;
     text-align: center;
 }
@@ -84,6 +91,18 @@ iframe {
     margin: 0 auto;
 }
 
+.carousel-fade .carousel-item {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.carousel-item {
+    transition: transform 1s ease-in-out;
+}
+
+.carousel-item.active img {
+    transform: scale(1.03);
+    transition: transform 1.5s ease-in-out;
+}
 
 .cardEx:hover {
     transform: scale(1.1);
@@ -232,7 +251,8 @@ main h1 {
     iframe {
         height: 300px;
     }
-    main{
+
+    main {
         padding: 5px;
     }
 }
