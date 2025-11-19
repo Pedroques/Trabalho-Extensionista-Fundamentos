@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nome": "João Silva",
+    "evento": "Chá Revelação",
+    "servicos": ["Freezer", "Gás Extra"],
+    "total": 1030,
+    "data": "2025-12-10",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 2,
+    "nome": "Maria Souza",
+    "evento": "Aniversário Infantil",
+    "servicos": ["Bolo", "Decoração Temática", "Fotógrafo"],
+    "total": 1500,
+    "data": "2025-12-12",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 3,
+    "nome": "Ana Costa",
+    "evento": "Casamento",
+    "servicos": ["Buffet Completo", "DJ", "Bebidas"],
+    "total": 5000,
+    "data": "2025-12-14",
+    "horario": "Noite",
+    "status": "pendente"
+  },
+  {
+    "id": 4,
+    "nome": "Carlos Pereira",
+    "evento": "Formatura",
+    "servicos": ["Open Bar", "Photobooth", "Som e Luz"],
+    "total": 3200,
+    "data": "2025-12-16",
+    "horario": "Tarde",
+    "status": "cancelada"
+  },
+  {
+    "id": 5,
+    "nome": "Juliana Lima",
+    "evento": "Aniversário Adulto",
+    "servicos": ["Banda Ao Vivo", "Decoração Floral", "Bebidas"],
+    "total": 2500,
+    "data": "2025-12-18",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 6,
+    "nome": "Fernando Alves",
+    "evento": "Evento Corporativo",
+    "servicos": ["Coffee Break", "Projetor", "Som"],
+    "total": 1800,
+    "data": "2025-12-20",
+    "horario": "Manhã",
+    "status": "pendente"
+  }
+]
