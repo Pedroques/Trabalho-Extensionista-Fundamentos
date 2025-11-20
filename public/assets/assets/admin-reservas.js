@@ -3,7 +3,7 @@ let reservas = [];
 // Função para carregar reservas do JSON
 async function carregarReservas() {
     try {
-        const response = await fetch('/public/assets/data/reservas.json'); // Caminho correto
+        const response = await fetch('/assets/data/reservas.json'); // caminho corrigido
         if (!response.ok) throw new Error("Não foi possível carregar o arquivo JSON.");
         reservas = await response.json();
         atualizarTabela();
@@ -19,14 +19,12 @@ function atualizarTabela(lista = reservas) {
     tabela.innerHTML = "";
 
     lista.forEach(reserva => {
-        // Badge de status
         const badge = {
             pendente: '<span class="badge bg-warning">Pendente</span>',
             confirmada: '<span class="badge bg-success">Confirmada</span>',
             cancelada: '<span class="badge bg-danger">Cancelada</span>'
         }[reserva.status];
 
-        // Criar linha da tabela
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
@@ -38,7 +36,6 @@ function atualizarTabela(lista = reservas) {
             <td></td>
         `;
 
-        // Ações (botões)
         const tdAcoes = tr.querySelector("td:last-child");
 
         if (reserva.status !== "confirmada") {

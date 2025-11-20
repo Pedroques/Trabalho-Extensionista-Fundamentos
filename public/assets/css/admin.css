@@ -34,6 +34,8 @@ h1, h2 {
     color: white;
 }
 
+.btn-action { margin-right:6px; }
+
 /* Estilo dos cards principais do painel */
 .card-admin {
     border-radius: 14px;
@@ -57,36 +59,12 @@ h1, h2 {
     font-family: Poppins;
 }
 
-/* Botão laranja */
-.btn-orange {
-    background: #ff7f32;
-    color: #fff;
-    font-weight: 600;
-}
-
-.btn-orange:hover {
-    background: #d96c28;
-    color: #fff;
-}
-
 /* Títulos */
 .card-header {
     background: #00224d;
     color: white;
     font-size: 18px;
     font-weight: 600;
-}
-
-/* Botão Laranja */
-.btn-orange {
-    background: #ff7f32;
-    color: white;
-    font-weight: 600;
-}
-
-.btn-orange:hover {
-    background: #d96c28;
-    color: white;
 }
 
 /* Inputs */

@@ -13,10 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- POPPINS -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="/public/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
 
 </head>
 
@@ -33,10 +34,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item"><a class="nav-link" href="/public/assets/admin/admin-dashboard.html">Painel Administrativo</a></li>
-                <li class="nav-item"><a class="nav-link" href="/public/assets/admin/admin-reservas.html">Reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/public/assets/admin/admin-precos.html">Preços</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/public/assets/admin/admin-galeria.html">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="/assets/admin/admin-dashboard.html">Painel
+                        Administrativo</a></li>
+                <li class="nav-item"><a class="nav-link" href="/assets/admin/admin-reservas.html">Reservas</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/assets/admin/admin-precos.html">Preços</a></li>
+                <li class="nav-item"><a class="nav-link active"
+                        href="/assets/admin/admin-galeria.html">Galeria</a></li>
 
             </ul>
         </div>
@@ -50,14 +54,12 @@
         <!-- UPLOAD -->
         <div class="card shadow-sm mb-4">
             <div class="card-body">
-
                 <label class="form-label fw-semibold">Enviar novas fotos para a galeria:</label>
-
                 <input type="file" id="inputFotos" class="form-control" multiple accept="image/*">
-
-                <button class="btn btn-orange mt-3" onclick="uploadFotos()">
+                <button class="btn btn-orange mt-3" id="btnUpload">
                     <i class="bi bi-upload"></i> Enviar Fotos
                 </button>
+                <span id="uploadStatus" class="ms-3 text-muted"></span>
             </div>
         </div>
 
@@ -70,7 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JS DA GALERIA -->
-    <script src="/public/assets/assets/admin-galeria.js"></script>
+    <script src="/assets/assets/admin-galeria.js"></script>
 
 </body>
 

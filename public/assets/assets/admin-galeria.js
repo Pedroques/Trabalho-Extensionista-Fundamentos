@@ -1,67 +1,163 @@
+// admin-galeria.js
+// Gerencia galeria: carregar, enviar, excluir, substituir.
+
+const GALERIA_JSON = "/assets/data/galeria.json";
+const ENDPOINT = "http://localhost:3000";
+
 let fotos = [];
 
-// Carregar fotos do JSON
-function carregarFotos() {
-    return fetch("/public/assets/data/galeria.json")
-        .then(r => r.json())
-        .then(data => {
-            fotos = data.map((url, index) => ({
-                id: index + 1,
-                url: url
-            }));
-            atualizarGaleria();
-        });
+// Carrega galeria do JSON público
+async function carregarFotos() {
+    try {
+        const res = await fetch(GALERIA_JSON + "?t=" + Date.now());
+        if (!res.ok) throw new Error("Falha ao buscar galeria");
+        const data = await res.json();
+        fotos = Array.isArray(data) ? data : [];
+        atualizarGaleria();
+    } catch (err) {
+        console.error("Erro ao carregar galeria:", err);
+        fotos = [];
+        atualizarGaleria();
+    }
 }
 
+// Atualiza HTML da galeria
+function atualizarGaleria() {
+    const container = document.getElementById("galeriaContainer");
+    container.innerHTML = "";
 
-function salvarGaleria() {
-    const lista = fotos.map(f => f.url);
+    fotos.forEach((url, index) => {
+        const col = document.createElement("div");
+        col.className = "col-6 col-md-4 col-lg-3 mb-4";
 
-    fetch("/public/assets/data/salvar_galeria.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(lista)
-    })
-    .then(r => r.text())
-    .then(res => {
-        alert("Galeria atualizada com sucesso!");
+        const inputId = `file-sub-${index}`;
+
+        col.innerHTML = `
+            <div class="card shadow-sm">
+                <img src="${url}" class="card-img-top" alt="Foto ${index+1}">
+                <div class="card-body text-center">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-danger btn-sm btn-action" onclick="excluirFoto('${encodeURIComponent(url)}')">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                        <button class="btn btn-warning btn-sm btn-action" onclick="triggerSubstituir('${inputId}')">
+                            <i class="bi bi-arrow-repeat"></i> Substituir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="${inputId}" class="d-none" accept="image/*" onchange="uploadSubstituicao(event, ${index})" />
+        `;
+
+        container.appendChild(col);
     });
 }
 
-// Upload (apenas front-end)
-function uploadFotos() {
-    const input = document.getElementById("inputFotos");
-    let files = Array.from(input.files);
+// Botão Enviar Fotos
+document.getElementById("btnUpload").addEventListener("click", uploadFotos);
 
-    if (files.length === 0) {
-        alert("Selecione ao menos uma foto.");
+// Upload de novas imagens
+async function uploadFotos() {
+    const input = document.getElementById("inputFotos");
+    const files = input.files;
+    if (!files || files.length === 0) {
+        alert("Selecione ao menos uma imagem.");
         return;
     }
 
-    files.forEach(file => {
-        const url = URL.createObjectURL(file);
+    const status = document.getElementById("uploadStatus");
+    status.textContent = "Enviando...";
 
-        fotos.push({
-            id: Date.now() + Math.random(),
-            url: url
-        });
-    });
+    const fd = new FormData();
+    for (let i = 0; i < files.length; i++) fd.append("fotos[]", files[i]);
 
-    input.value = "";
-    atualizarGaleria();
-    salvarGaleria();
-}
+    try {
+        const res = await fetch(ENDPOINT + "/upload", { method: "POST", body: fd });
+        if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+        const json = await res.json();
 
-// Excluir imagem
-function excluirFoto(id) {
-    if (confirm("Deseja excluir esta foto da galeria?")) {
-        fotos = fotos.filter(f => f.id !== id);
-        atualizarGaleria();
-        salvarGaleria();
+        if (json.status === "ok") {
+            fotos = json.galeria;
+            atualizarGaleria();
+            alert("Fotos enviadas com sucesso!");
+        } else {
+            alert("Erro: " + (json.mensagem || "Resposta inválida"));
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao enviar imagens. Veja console.");
+    } finally {
+        status.textContent = "";
+        input.value = "";
     }
 }
 
-// Inicializar
+// Excluir foto
+async function excluirFoto(encodedUrl) {
+    const url = decodeURIComponent(encodedUrl);
+    if (!confirm("Deseja excluir esta imagem permanentemente?")) return;
+
+    try {
+        const res = await fetch(ENDPOINT + "/excluir", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ excluir: url })
+        });
+
+        if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+        const json = await res.json();
+
+        if (json.status === "ok") {
+            fotos = json.galeria;
+            atualizarGaleria();
+        } else {
+            alert("Erro ao excluir: " + (json.mensagem || "Resposta inválida"));
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao excluir imagem.");
+    }
+}
+
+// Abre o seletor de arquivo oculto
+function triggerSubstituir(inputId) {
+    const input = document.getElementById(inputId);
+    if (input) input.click();
+}
+
+// Substituição de foto
+async function uploadSubstituicao(event, index) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!confirm("Confirma substituir esta imagem? A imagem antiga será removida.")) {
+        event.target.value = "";
+        return;
+    }
+
+    const fd = new FormData();
+    fd.append("foto", file);
+    fd.append("old", fotos[index]);
+
+    try {
+        const res = await fetch(ENDPOINT + "/substituir", { method: "POST", body: fd });
+        if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+        const json = await res.json();
+
+        if (json.status === "ok") {
+            fotos = json.galeria;
+            atualizarGaleria();
+            alert("Imagem substituída com sucesso!");
+        } else {
+            alert("Erro ao substituir: " + (json.mensagem || "Resposta inválida"));
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro na substituição.");
+    } finally {
+        event.target.value = "";
+    }
+}
+
+// Inicializa
 carregarFotos();

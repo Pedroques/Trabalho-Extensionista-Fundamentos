@@ -3,11 +3,11 @@ let servicos = [];
 
 // Carregar dados do servidor
 function carregarPrecos() {
-    fetch("/public/assets/data/precos.json")
+    fetch("http://localhost:3000/precos")
         .then(r => r.json())
         .then(data => {
-            eventos = data.eventos;
-            servicos = data.servicos;
+            eventos = data.eventos || [];
+            servicos = data.servicos || [];
             atualizarTabelas();
         })
         .catch(err => console.error("Erro ao carregar preços:", err));
@@ -97,13 +97,16 @@ function removerServico(id) {
 function salvarPrecos() {
     const dados = { eventos, servicos };
 
-    fetch("/save-precos.php", {
+    fetch("http://localhost:3000/precos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados)
     })
-    .then(r => r.text())
-    .then(msg => alert(msg))
+    .then(r => r.json())
+    .then(resp => {
+        if (resp.status === "ok") alert(resp.mensagem);
+        else alert("Erro: " + (resp.mensagem || "Falha ao salvar"));
+    })
     .catch(err => alert("Erro ao salvar preços"));
 }
 

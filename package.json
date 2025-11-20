@@ -1,0 +1,26 @@
+{
+  "name": "trabalho-extensionista-fundamentos",
+  "version": "1.0.0",
+  "description": "Trabalho Extensionista Fundamentos de Sistema de Informação do professor Clóvis, 2° Perídio",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jones-Amaral/Trabalho-Extensionista-Fundamentos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jones-Amaral/Trabalho-Extensionista-Fundamentos/issues"
+  },
+  "homepage": "https://github.com/Jones-Amaral/Trabalho-Extensionista-Fundamentos#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  }
+}
