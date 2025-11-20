@@ -4,78 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agenda</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="css/agenda.css" />
     <link rel="icon" href="img/iconeLogo.png" type="image/png" />
   </head>
 
   <body>
+    <!-- NAVBAR -->
     <header>
       <nav class="navbarEdit navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"
-            ><img src="img/logo.png" id="imgLogo" alt="Logo"
-          /></a>
+
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" id="imgLogo" alt="Logo"/>
+          </a>
+
           <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a
-                class="nav-link"
-                id="homeNavBar"
-                aria-current="page"
-                href="index.html"
-                >Página Principal</a
-              >
-              <a class="nav-link" id="agendaNavBar" href="agenda.html"
-                >Agenda</a
-              >
+              <a class="nav-link" id="homeNavBar" href="index.html">Página Principal</a>
+              <a class="nav-link" id="agendaNavBar" href="agenda.html">Agenda</a>
             </div>
           </div>
+
         </div>
       </nav>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
       <div class="container py-5">
         <h2 class="mb-4 text-center">Reserva do Salão de Festas</h2>
 
         <div class="row g-4">
-          <!-- CALENDÁRIO -->
+
+          <!-- COLUNA CALENDÁRIO -->
           <div class="col-md-6">
             <div class="card-custom">
+
               <h4 id="tituloData">1. Selecione a Data</h4>
 
-              <div
-                class="d-flex justify-content-between align-items-center mb-2"
-              >
-                <button
-                  class="btn btn-outline-primary btn-sm"
-                  onclick="mudarMes(-1)"
-                >
-                  ◀
-                </button>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <button class="btn btn-outline-primary btn-sm" onclick="mudarMes(-1)">◀</button>
                 <h5 id="mesAno"></h5>
-                <button
-                  class="btn btn-outline-primary btn-sm"
-                  onclick="mudarMes(1)"
-                >
-                  ▶
-                </button>
+                <button class="btn btn-outline-primary btn-sm" onclick="mudarMes(1)">▶</button>
               </div>
 
               <div id="calendar"></div>
@@ -87,13 +72,15 @@
                 <option value="Tarde">Tarde</option>
                 <option value="Noite">Noite</option>
               </select>
+
             </div>
           </div>
 
-          <!-- SERVIÇOS -->
+          <!-- COLUNA SERVIÇOS / TOTAL -->
           <div class="col-md-6">
             <div class="card-custom">
-              <!-- TIPO DE EVENTO -->
+
+              <!-- EVENTOS (DINÂMICO) -->
               <h4>2. Tipo de Evento</h4>
 
               <select
@@ -101,82 +88,41 @@
                 class="form-select shadow-sm mb-4"
                 onchange="atualizarTotal()"
               >
-                <option value="350">Aniversário Infantil – R$ 350</option>
-                <option value="350">
-                  Aniversário Infanto-Juvenil – R$ 350
-                </option>
-                <option value="350">Aniversário Adulto – R$ 350</option>
-                <option value="350">Batizado – R$ 350</option>
-                <option value="350">Chá de Panela – R$ 350</option>
-                <option value="350">Chá Revelação – R$ 350</option>
-                <option value="350">Noivado – R$ 350</option>
-                <option value="350">Outros – R$ 350</option>
-                <option value="450">Evento de 8 horas – R$ 450</option>
+                <!-- preenchido via JS -->
               </select>
 
-              <!-- VALOR DA LOCAÇÃO -->
+              <!-- VALOR EVENTO -->
               <div class="price-box mt-3">
                 <h5>💰 Valor da Locação</h5>
-                <h4>R$ <span id="valorLocacaoResumo">350</span>,00</h4>
+                <h4>R$ <span id="valorLocacaoResumo">0</span>,00</h4>
               </div>
 
-              <!-- SERVIÇOS OPCIONAIS -->
+              <!-- SERVIÇOS OPCIONAIS (DINÂMICO) -->
               <h4 class="mt-4">3. Serviços Adicionais</h4>
 
-              <div class="mt-3">
-                <label
-                  ><input type="checkbox" class="serv" data-price="50" /> Gás de
-                  Cozinha – R$ 50</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="30" />
-                  Freezer – R$ 30</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="50" />
-                  Piscina de Bolinhas – R$ 50</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="100" /> Cama
-                  Elástica – R$ 100</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="50" />
-                  Fliperama – R$ 50</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="0" /> Jogos
-                  de Mesa + 4 Cadeiras – Incluso</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="0" /> Tampo
-                  de Mesa Redondo – Incluso</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="serv" data-price="0" /> Forro
-                  de mesa – Incluso</label
-                ><br />
-
-                <label class="mt-3 fw-bold">Rechaud Banho Maria:</label>
-                <select id="rechaud" class="form-select shadow-sm mt-1">
-                  <option value="0">Nenhum (R$ 0)</option>
-                  <option value="50">Redondo Inox 7L – R$ 50</option>
-                  <option value="50">Retangular 9L – R$ 50</option>
-                </select>
+              <div id="listaServicos" class="mt-3">
+                <!-- serviços carregados via JS -->
               </div>
+
+              <!-- RECHAUD (DINÂMICO) -->
+              <label class="mt-3 fw-bold">Rechaud Banho Maria:</label>
+              <select id="rechaud" class="form-select shadow-sm mt-1">
+                <!-- inserido via JS -->
+              </select>
 
               <!-- TOTAL -->
               <div class="price-box mt-4">
                 <h5>Total da Reserva</h5>
 
                 <p class="mb-1">
-                  Locação: R$ <span id="valorLocacaoResumoTotal">350</span>
+                  Locação: R$ <span id="valorLocacaoResumoTotal">0</span>
                 </p>
+
                 <p class="mb-1">
                   Serviços: R$ <span id="servicosValor">0</span>
                 </p>
 
-                <h4>Total: R$ <span id="totalValor">350</span></h4>
+                <h4>Total: R$ <span id="totalValor">0</span></h4>
 
                 <button
                   class="btn btn-primary mt-3 w-100"
@@ -185,237 +131,41 @@
                   Continuar para WhatsApp
                 </button>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </main>
 
+    <!-- RODAPÉ -->
     <footer class="rodape">
       <div class="rodape-container">
+
         <div class="rodape-section contato">
           <h3>Contato</h3>
-          <p>📍 R. Sr. dos Passos, 540 - Brasília, Sarzedo - MG, 32450-000</p>
+          <p>📍 R. Sr. dos Passos, 540 - Brasília, Sarzedo - MG</p>
           <p>📞 (31) 99678-4862</p>
         </div>
+
         <div class="redes">
           <h3>Siga-nos</h3>
-          <a href="https://www.instagram.com/lounge_gourmet_/" target="_blank"
-            ><img src="img/insta.png" alt="Instagram" class="iconeRede"
-          /></a>
+          <a href="https://www.instagram.com/lounge_gourmet_/" target="_blank">
+            <img src="img/insta.png" alt="Instagram" class="iconeRede" />
+          </a>
         </div>
+
       </div>
 
       <div class="copyright">
         <p>© 2025 Lounge Gourmet. Todos os direitos reservados.</p>
-        <p>
-          Ícones por
-          <a href="https://www.flaticon.com" target="_blank">Flaticon</a>
-        </p>
       </div>
     </footer>
 
-    <script>
-      let datasIndisponiveis = []; // será carregado do JSON Server
-      let dataAtual = new Date();
+    <!-- JS DA AGENDA DINÂMICA -->
+    <script src="assets/agenda-dinamica.js"></script>
 
-      /* 1) Carregar datas bloqueadas do JSON SERVER */
-      fetch("http://localhost:3000/datasBloqueadas")
-        .then((res) => res.json())
-        .then((lista) => {
-          datasIndisponiveis = lista;
-          gerarCalendario();
-        })
-        .catch((err) => {
-          console.error("Erro ao carregar datas:", err);
-          gerarCalendario(); // mesmo se falhar, gera sem bloqueios
-        });
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-      /* Converte YYYY-MM-DD → DD/MM/YYYY */
-      function formatarDataISO(dataISO) {
-        const [ano, mes, dia] = dataISO.split("-");
-        return `${dia}/${mes}/${ano}`;
-      }
-
-      function mudarMes(direcao) {
-        dataAtual.setMonth(dataAtual.getMonth() + direcao);
-        gerarCalendario();
-      }
-
-      /* 2) Gerar calendário */
-      function gerarCalendario() {
-        const calendar = document.getElementById("calendar");
-        calendar.innerHTML = "";
-
-        const ano = dataAtual.getFullYear();
-        const mes = dataAtual.getMonth();
-        const hoje = new Date();
-
-        const meses = [
-          "Janeiro",
-          "Fevereiro",
-          "Março",
-          "Abril",
-          "Maio",
-          "Junho",
-          "Julho",
-          "Agosto",
-          "Setembro",
-          "Outubro",
-          "Novembro",
-          "Dezembro",
-        ];
-
-        document.getElementById(
-          "mesAno"
-        ).textContent = `${meses[mes]} de ${ano}`;
-
-        const primeiroDia = new Date(ano, mes, 1).getDay();
-        const ultimoDia = new Date(ano, mes + 1, 0).getDate();
-
-        const tabela = document.createElement("table");
-        tabela.className = "table table-bordered text-center";
-
-        let linha = document.createElement("tr");
-
-        for (let i = 0; i < primeiroDia; i++)
-          linha.appendChild(document.createElement("td"));
-
-        for (let dia = 1; dia <= ultimoDia; dia++) {
-          const td = document.createElement("td");
-          td.textContent = dia;
-          td.classList.add("day");
-
-          const dataISO = `${ano}-${String(mes + 1).padStart(2, "0")}-${String(
-            dia
-          ).padStart(2, "0")}`;
-
-          const dataObj = new Date(dataISO);
-
-          const dataBloqueada =
-            dataObj < hoje || datasIndisponiveis.includes(dataISO);
-
-          if (dataBloqueada) {
-            td.classList.add("disabled");
-            td.dataset.bloqueado = "true";
-          } else {
-            td.addEventListener("click", () => selecionarDia(td, dataISO));
-          }
-
-          linha.appendChild(td);
-
-          if ((dia + primeiroDia) % 7 === 0) {
-            tabela.appendChild(linha);
-            linha = document.createElement("tr");
-          }
-        }
-
-        tabela.appendChild(linha);
-        calendar.appendChild(tabela);
-      }
-
-      /* 3) Selecionar data válida */
-      function selecionarDia(td, dataISO) {
-        if (td.dataset.bloqueado === "true") return; // bloqueia seleção 100%
-
-        document.querySelectorAll(".day").forEach((d) => {
-          d.classList.remove("selected");
-        });
-
-        td.classList.add("selected");
-        td.dataset.selecionado = dataISO;
-
-        const dataBR = formatarDataISO(dataISO);
-        document.getElementById(
-          "tituloData"
-        ).textContent = `1. Selecione a Data — Escolhida: ${dataBR}`;
-      }
-
-      /* 4) Cálculo do total */
-      function atualizarTotal() {
-        const valorEvento = Number(document.getElementById("tipoEvento").value);
-
-        let totalServicos = 0;
-        document.querySelectorAll(".serv:checked").forEach((i) => {
-          totalServicos += Number(i.dataset.price);
-        });
-
-        totalServicos += Number(document.getElementById("rechaud").value);
-
-        document.getElementById("valorLocacaoResumo").textContent = valorEvento;
-        document.getElementById("valorLocacaoResumoTotal").textContent =
-          valorEvento;
-        document.getElementById("servicosValor").textContent = totalServicos;
-
-        const total = valorEvento + totalServicos;
-        document.getElementById("totalValor").textContent = total;
-      }
-
-      document
-        .querySelectorAll(".serv")
-        .forEach((i) => i.addEventListener("change", atualizarTotal));
-
-      document
-        .getElementById("rechaud")
-        .addEventListener("change", atualizarTotal);
-
-      /* 5) WhatsApp */
-      function enviarWhatsApp() {
-        const numero = "5531993287882";
-
-        const diaSelecionado = document.querySelector(".day.selected");
-        if (!diaSelecionado) return alert("Selecione uma data.");
-
-        const dataISO = diaSelecionado.dataset.selecionado;
-        const dataEscolhida = formatarDataISO(dataISO);
-
-        const horario = document.getElementById("horario").value;
-        if (!horario) return alert("Selecione o horário.");
-
-        const tipoEventoTexto =
-          document.getElementById("tipoEvento").selectedOptions[0].text;
-
-        const valorEvento =
-          document.getElementById("valorLocacaoResumo").innerText;
-
-        let servicos = [];
-        document.querySelectorAll(".serv:checked").forEach((i) => {
-          servicos.push(`- ${i.parentElement.innerText.trim()}`);
-        });
-
-        const rechaudValor = document.getElementById("rechaud").value;
-        if (rechaudValor > 0) servicos.push(`- Rechaud (R$ ${rechaudValor})`);
-
-        const total = document.getElementById("totalValor").innerText;
-
-        const mensagem = `
-Olá! Quero fazer uma reserva.
-
-📅 *Data:* ${dataEscolhida}
-⏰ *Horário:* ${horario}
-
-🎉 *Tipo de Evento:* ${tipoEventoTexto}
-💰 *Valor da Locação:* R$ ${valorEvento},00
-
-🛠 *Serviços adicionais:*
-${servicos.length ? servicos.join("\n") : "- Nenhum"}
-
-💵 *Total:* R$ ${total}
-
-Pode confirmar a disponibilidade?
-`;
-
-        window.open(
-          `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
-          "_blank"
-        );
-      }
-    </script>
-
-    <script
-      src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
