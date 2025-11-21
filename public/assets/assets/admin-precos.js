@@ -1,10 +1,15 @@
 let eventos = [];
 let servicos = [];
 
-// Carregar dados do servidor
+const API = "https://trabalho-extensionista-fundamentos-production.up.railway.app";
+
+// Carregar preços do servidor
 function carregarPrecos() {
-    fetch("http://localhost:3000/precos")
-        .then(r => r.json())
+    fetch(`${API}/precos`)
+        .then(r => {
+            if (!r.ok) throw new Error("Erro ao buscar preços");
+            return r.json();
+        })
         .then(data => {
             eventos = data.eventos || [];
             servicos = data.servicos || [];
@@ -58,7 +63,7 @@ function atualizarTabelas() {
     });
 }
 
-// Editar valores
+// Editar
 function editarEvento(id, campo, valor) {
     eventos = eventos.map(e => e.id === id ? { ...e, [campo]: valor } : e);
 }
@@ -97,17 +102,23 @@ function removerServico(id) {
 function salvarPrecos() {
     const dados = { eventos, servicos };
 
-    fetch("http://localhost:3000/precos", {
+    fetch(`${API}/precos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados)
     })
     .then(r => r.json())
     .then(resp => {
-        if (resp.status === "ok") alert(resp.mensagem);
-        else alert("Erro: " + (resp.mensagem || "Falha ao salvar"));
+        if (resp.status === "ok") {
+            alert(resp.mensagem || "Preços atualizados!");
+        } else {
+            alert("Erro: " + (resp.mensagem || "Falha ao salvar"));
+        }
     })
-    .catch(err => alert("Erro ao salvar preços"));
+    .catch(err => {
+        console.error(err);
+        alert("Erro ao salvar preços");
+    });
 }
 
 // Carregar ao iniciar

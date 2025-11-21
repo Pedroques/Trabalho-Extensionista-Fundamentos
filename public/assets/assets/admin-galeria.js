@@ -1,18 +1,23 @@
 // admin-galeria.js
-// Gerencia galeria: carregar, enviar, excluir, substituir.
+// Gerencia galeria: carregar, enviar, excluir e substituir
 
+// O galeria.json continua no Vercel (somente leitura)
 const GALERIA_JSON = "/assets/data/galeria.json";
-const ENDPOINT = "http://localhost:3000";
+
+// API do Railway (leitura/escrita de imagens)
+const API = "https://trabalho-extensionista-fundamentos-production.up.railway.app";
 
 let fotos = [];
 
-// Carrega galeria do JSON público
+// Carrega galeria do JSON público (somente leitura)
 async function carregarFotos() {
     try {
         const res = await fetch(GALERIA_JSON + "?t=" + Date.now());
         if (!res.ok) throw new Error("Falha ao buscar galeria");
+        
         const data = await res.json();
         fotos = Array.isArray(data) ? data : [];
+        
         atualizarGaleria();
     } catch (err) {
         console.error("Erro ao carregar galeria:", err);
@@ -21,7 +26,7 @@ async function carregarFotos() {
     }
 }
 
-// Atualiza HTML da galeria
+// Renderiza thumbnails
 function atualizarGaleria() {
     const container = document.getElementById("galeriaContainer");
     container.innerHTML = "";
@@ -46,7 +51,8 @@ function atualizarGaleria() {
                     </div>
                 </div>
             </div>
-            <input type="file" id="${inputId}" class="d-none" accept="image/*" onchange="uploadSubstituicao(event, ${index})" />
+            <input type="file" id="${inputId}" class="d-none" accept="image/*"
+                onchange="uploadSubstituicao(event, ${index})" />
         `;
 
         container.appendChild(col);
@@ -56,10 +62,11 @@ function atualizarGaleria() {
 // Botão Enviar Fotos
 document.getElementById("btnUpload").addEventListener("click", uploadFotos);
 
-// Upload de novas imagens
+// Upload de novas fotos
 async function uploadFotos() {
     const input = document.getElementById("inputFotos");
     const files = input.files;
+
     if (!files || files.length === 0) {
         alert("Selecione ao menos uma imagem.");
         return;
@@ -69,11 +76,18 @@ async function uploadFotos() {
     status.textContent = "Enviando...";
 
     const fd = new FormData();
-    for (let i = 0; i < files.length; i++) fd.append("fotos[]", files[i]);
+    for (let i = 0; i < files.length; i++) {
+        fd.append("fotos[]", files[i]);
+    }
 
     try {
-        const res = await fetch(ENDPOINT + "/upload", { method: "POST", body: fd });
+        const res = await fetch(`${API}/upload`, {
+            method: "POST",
+            body: fd
+        });
+
         if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+
         const json = await res.json();
 
         if (json.status === "ok") {
@@ -98,13 +112,14 @@ async function excluirFoto(encodedUrl) {
     if (!confirm("Deseja excluir esta imagem permanentemente?")) return;
 
     try {
-        const res = await fetch(ENDPOINT + "/excluir", {
+        const res = await fetch(`${API}/excluir`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ excluir: url })
         });
 
         if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+
         const json = await res.json();
 
         if (json.status === "ok") {
@@ -119,13 +134,12 @@ async function excluirFoto(encodedUrl) {
     }
 }
 
-// Abre o seletor de arquivo oculto
+// Abrir input para substituir
 function triggerSubstituir(inputId) {
-    const input = document.getElementById(inputId);
-    if (input) input.click();
+    document.getElementById(inputId)?.click();
 }
 
-// Substituição de foto
+// Substituir foto
 async function uploadSubstituicao(event, index) {
     const file = event.target.files[0];
     if (!file) return;
@@ -140,8 +154,13 @@ async function uploadSubstituicao(event, index) {
     fd.append("old", fotos[index]);
 
     try {
-        const res = await fetch(ENDPOINT + "/substituir", { method: "POST", body: fd });
+        const res = await fetch(`${API}/substituir`, {
+            method: "POST",
+            body: fd
+        });
+
         if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+
         const json = await res.json();
 
         if (json.status === "ok") {
@@ -149,7 +168,7 @@ async function uploadSubstituicao(event, index) {
             atualizarGaleria();
             alert("Imagem substituída com sucesso!");
         } else {
-            alert("Erro ao substituir: " + (json.mensagem || "Resposta inválida"));
+            alert("Erro ao substituir: " + json.mensagem);
         }
     } catch (err) {
         console.error(err);
