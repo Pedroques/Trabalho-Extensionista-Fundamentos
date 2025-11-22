@@ -88,6 +88,21 @@
       "preco": 0
     },
     {
+      "id": 10,
+      "nome": "Mesas",
+      "incluidas": 10,
+      "extras": 8,
+      "preco_extra": 10
+    },
+    {
+      "id": 11,
+      "nome": "Cadeiras",
+      "incluidas": 40,
+      "extras": 32,
+      "preco_extra": 2
+    },
+
+    {
       "id": 9,
       "nome": "Rechaud Banho Maria - Redondo Inox 7L ou Retangular 9L",
       "preco": 50
