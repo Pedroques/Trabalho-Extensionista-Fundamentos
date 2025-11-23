@@ -39,8 +39,16 @@ function preencherTabela(arrecadacao) {
     const tabela = document.getElementById("tabelaArrecadacao");
     tabela.innerHTML = "";
 
-    const mesesOrdenados = Object.keys(arrecadacao).sort();
+    // Ordenação correta
+    const mesesOrdenados = Object.keys(arrecadacao).sort((a, b) => {
+        const [mesA, anoA] = a.split("/").map(Number);
+        const [mesB, anoB] = b.split("/").map(Number);
 
+        if (anoA !== anoB) return anoA - anoB;
+        return mesA - mesB;
+    });
+
+    // AGORA SIM: adicionar na tabela
     mesesOrdenados.forEach(mes => {
         const tr = document.createElement("tr");
         tr.innerHTML = `

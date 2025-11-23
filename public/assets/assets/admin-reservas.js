@@ -7,6 +7,7 @@ async function carregarReservas() {
         const response = await fetch(`${API}/reservas`);
         if (!response.ok) throw new Error("Falha ao carregar reservas");
         reservas = await response.json();
+        reservas.sort((a, b) => new Date(a.data) - new Date(b.data));
         atualizarTabela();
     } catch (error) {
         console.error("Erro ao carregar reservas:", error);
@@ -20,6 +21,10 @@ function atualizarTabela(lista = reservas) {
     tabela.innerHTML = "";
 
     lista.forEach(reserva => {
+
+        // Converter data para formato brasileiro
+        const dataBR = reserva.data.split("-").reverse().join("/");
+
         const badge = {
             pendente: '<span class="badge bg-warning">Pendente</span>',
             confirmada: '<span class="badge bg-success">Confirmada</span>',
@@ -30,14 +35,27 @@ function atualizarTabela(lista = reservas) {
 
         tr.innerHTML = `
             <td>${reserva.nome}</td>
-            <td>${reserva.evento}</td>
-            <td>${reserva.data}</td>
+
+            <td>
+                <b>${reserva.evento.split("–")[0].trim()}</b><br>
+                <small class="text-muted">Serviços: ${reserva.servicos?.join(", ") || "Nenhum"}</small>
+            </td>
+
+            <td>${dataBR}</td>
+
             <td>${reserva.horario}</td>
+
             <td>${badge}</td>
-            <td></td>
+
+            <td>
+                <b>R$ ${reserva.total?.toFixed(2) || "0.00"}</b>
+            </td>
+
+            <td class="acoes"></td>
         `;
 
-        const tdAcoes = tr.querySelector("td:last-child");
+        // Ações (confirmar/cancelar)
+        const tdAcoes = tr.querySelector(".acoes");
 
         // Botão confirmar
         if (reserva.status !== "confirmada") {
@@ -107,18 +125,37 @@ async function salvarAlteracoes() {
     }
 }
 
-// Filtrar reservas por data
+// Filtrar reservas por data (ou mês atual se campos vazios)
 function filtrarReservas() {
-    const inicio = document.getElementById("dataInicial").value;
-    const fim = document.getElementById("dataFinal").value;
+    let inicio = document.getElementById("dataInicial").value;
+    let fim = document.getElementById("dataFinal").value;
 
+    // Se algum campo estiver vazio, pega o mês atual
     if (!inicio || !fim) {
-        alert("Selecione as duas datas para filtrar.");
-        return;
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = hoje.getMonth(); // 0 = Janeiro
+
+        const primeiroDia = new Date(ano, mes, 1);
+        const ultimoDia = new Date(ano, mes + 1, 0);
+
+        inicio = primeiroDia.toISOString().split("T")[0];
+        fim = ultimoDia.toISOString().split("T")[0];
+
+        document.getElementById("dataInicial").value = inicio;
+        document.getElementById("dataFinal").value = fim;
     }
 
-    const filtrado = reservas.filter(r => r.data >= inicio && r.data <= fim);
+    const inicioDate = new Date(inicio);
+    const fimDate = new Date(fim);
+
+    const filtrado = reservas.filter(r => {
+        const dataReserva = new Date(r.data);
+        return dataReserva >= inicioDate && dataReserva <= fimDate;
+    });
+
     atualizarTabela(filtrado);
 }
 
-carregarReservas();
+// Depois de carregar as reservas, filtra automaticamente
+carregarReservas().then(() => filtrarReservas());

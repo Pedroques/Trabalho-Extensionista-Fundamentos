@@ -1,6 +1,441 @@
 [
   {
     "id": 1,
+    "nome": "Lucas Ferreira",
+    "evento": "Aniversário Adulto",
+    "servicos": [
+      "Banda Ao Vivo",
+      "Decoração Floral",
+      "Bebidas"
+    ],
+    "total": 2300,
+    "data": "2025-01-15",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 2,
+    "nome": "Mariana Rocha",
+    "evento": "Casamento",
+    "servicos": [
+      "Buffet Completo",
+      "DJ",
+      "Bebidas"
+    ],
+    "total": 5200,
+    "data": "2025-01-25",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 3,
+    "nome": "Pedro Santos",
+    "evento": "Formatura",
+    "servicos": [
+      "Open Bar",
+      "Photobooth",
+      "Som e Luz"
+    ],
+    "total": 3100,
+    "data": "2025-01-28",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 4,
+    "nome": "Clara Almeida",
+    "evento": "Chá de Bebê",
+    "servicos": [
+      "Decoração Temática",
+      "Buffet",
+      "Bolo"
+    ],
+    "total": 1100,
+    "data": "2025-02-10",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 5,
+    "nome": "Rafael Nunes",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Bolo",
+      "Mesas",
+      "Cadeiras"
+    ],
+    "total": 850,
+    "data": "2025-02-14",
+    "horario": "Tarde",
+    "status": "confirmada"
+  },
+  {
+    "id": 6,
+    "nome": "Isabela Martins",
+    "evento": "Evento Corporativo",
+    "servicos": [
+      "Coffee Break",
+      "Projetor",
+      "Som"
+    ],
+    "total": 1800,
+    "data": "2025-02-20",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 7,
+    "nome": "Bruno Costa",
+    "evento": "Aniversário Adulto",
+    "servicos": [
+      "Banda Ao Vivo",
+      "Decoração Floral",
+      "Bebidas"
+    ],
+    "total": 2200,
+    "data": "2025-03-05",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 8,
+    "nome": "Fernanda Lima",
+    "evento": "Casamento",
+    "servicos": [
+      "Buffet Completo",
+      "DJ",
+      "Bebidas"
+    ],
+    "total": 4800,
+    "data": "2025-03-12",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 9,
+    "nome": "Gustavo Ramos",
+    "evento": "Formatura",
+    "servicos": [
+      "Open Bar",
+      "Photobooth",
+      "Som e Luz"
+    ],
+    "total": 3100,
+    "data": "2025-03-18",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 10,
+    "nome": "Camila Mendes",
+    "evento": "Chá de Bebê",
+    "servicos": [
+      "Decoração Temática",
+      "Buffet",
+      "Bolo"
+    ],
+    "total": 1050,
+    "data": "2025-04-08",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 11,
+    "nome": "Diego Souza",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Bolo",
+      "Mesas",
+      "Cadeiras"
+    ],
+    "total": 900,
+    "data": "2025-04-15",
+    "horario": "Tarde",
+    "status": "confirmada"
+  },
+  {
+    "id": 12,
+    "nome": "Elisa Carvalho",
+    "evento": "Evento Corporativo",
+    "servicos": [
+      "Coffee Break",
+      "Projetor",
+      "Som"
+    ],
+    "total": 1700,
+    "data": "2025-04-20",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 13,
+    "nome": "Fábio Lima",
+    "evento": "Aniversário Adulto",
+    "servicos": [
+      "Banda Ao Vivo",
+      "Decoração Floral",
+      "Bebidas"
+    ],
+    "total": 2400,
+    "data": "2025-05-03",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 14,
+    "nome": "Gabriela Martins",
+    "evento": "Casamento",
+    "servicos": [
+      "Buffet Completo",
+      "DJ",
+      "Bebidas"
+    ],
+    "total": 5000,
+    "data": "2025-05-11",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 15,
+    "nome": "Hugo Ferreira",
+    "evento": "Formatura",
+    "servicos": [
+      "Open Bar",
+      "Photobooth",
+      "Som e Luz"
+    ],
+    "total": 3300,
+    "data": "2025-05-22",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 16,
+    "nome": "Lívia Costa",
+    "evento": "Chá de Bebê",
+    "servicos": [
+      "Buffet",
+      "Decoração",
+      "Bolo"
+    ],
+    "total": 1200,
+    "data": "2025-06-07",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 17,
+    "nome": "Matheus Rocha",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Bolo",
+      "Mesas",
+      "Cadeiras"
+    ],
+    "total": 950,
+    "data": "2025-06-14",
+    "horario": "Tarde",
+    "status": "confirmada"
+  },
+  {
+    "id": 18,
+    "nome": "Patrícia Santos",
+    "evento": "Evento Corporativo",
+    "servicos": [
+      "Coffee Break",
+      "Projetor",
+      "Som"
+    ],
+    "total": 1850,
+    "data": "2025-06-21",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 19,
+    "nome": "Renato Lima",
+    "evento": "Aniversário Adulto",
+    "servicos": [
+      "Banda Ao Vivo",
+      "Decoração Floral",
+      "Bebidas"
+    ],
+    "total": 2450,
+    "data": "2025-07-05",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 20,
+    "nome": "Sofia Martins",
+    "evento": "Casamento",
+    "servicos": [
+      "Buffet Completo",
+      "DJ",
+      "Bebidas"
+    ],
+    "total": 5100,
+    "data": "2025-07-13",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 21,
+    "nome": "Thiago Alves",
+    "evento": "Formatura",
+    "servicos": [
+      "Open Bar",
+      "Photobooth",
+      "Som e Luz"
+    ],
+    "total": 3200,
+    "data": "2025-07-22",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 22,
+    "nome": "Vanessa Costa",
+    "evento": "Chá de Bebê",
+    "servicos": [
+      "Buffet",
+      "Decoração",
+      "Bolo"
+    ],
+    "total": 1300,
+    "data": "2025-08-06",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 23,
+    "nome": "William Souza",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Bolo",
+      "Mesas",
+      "Cadeiras"
+    ],
+    "total": 900,
+    "data": "2025-08-15",
+    "horario": "Tarde",
+    "status": "confirmada"
+  },
+  {
+    "id": 24,
+    "nome": "Yara Martins",
+    "evento": "Evento Corporativo",
+    "servicos": [
+      "Coffee Break",
+      "Projetor",
+      "Som"
+    ],
+    "total": 1750,
+    "data": "2025-08-20",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 25,
+    "nome": "Zeca Lima",
+    "evento": "Aniversário Adulto",
+    "servicos": [
+      "Banda Ao Vivo",
+      "Decoração Floral",
+      "Bebidas"
+    ],
+    "total": 2500,
+    "data": "2025-09-05",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 26,
+    "nome": "Adriana Rocha",
+    "evento": "Casamento",
+    "servicos": [
+      "Buffet Completo",
+      "DJ",
+      "Bebidas"
+    ],
+    "total": 5200,
+    "data": "2025-09-12",
+    "horario": "Noite",
+    "status": "confirmada"
+  },
+  {
+    "id": 27,
+    "nome": "Bruna Martins",
+    "evento": "Formatura",
+    "servicos": [
+      "Open Bar",
+      "Photobooth",
+      "Som e Luz"
+    ],
+    "total": 3350,
+    "data": "2025-09-22",
+    "horario": "Tarde",
+    "status": "pendente"
+  },
+  {
+    "id": 28,
+    "nome": "Carlos Silva",
+    "evento": "Chá de Bebê",
+    "servicos": [
+      "Buffet",
+      "Decoração",
+      "Bolo"
+    ],
+    "total": 1250,
+    "data": "2025-10-07",
+    "horario": "Manhã",
+    "status": "confirmada"
+  },
+  {
+    "id": 29,
+    "nome": "Daniela Lima",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Bolo",
+      "Mesas",
+      "Cadeiras"
+    ],
+    "total": 950,
+    "data": "2025-10-14",
+    "horario": "Tarde",
+    "status": "confirmada"
+  },
+  {
+    "id": 30,
+    "nome": "Eduardo Martins",
+    "evento": "Evento Corporativo",
+    "servicos": [
+      "Coffee Break",
+      "Projetor",
+      "Som"
+    ],
+    "total": 1800,
+    "data": "2025-10-20",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 31,
+    "nome": "Ana Luiza",
+    "evento": "Aniversário Infantil",
+    "servicos": [
+      "Gás de Cozinha",
+      "Freezer",
+      "Mesas: 10",
+      "Cadeiras: 40"
+    ],
+    "total": 430,
+    "data": "2025-11-29",
+    "horario": "Manhã",
+    "status": "pendente"
+  },
+  {
+    "id": 32,
     "nome": "João Silva",
     "evento": "Chá Revelação",
     "servicos": [
@@ -13,7 +448,7 @@
     "status": "pendente"
   },
   {
-    "id": 2,
+    "id": 33,
     "nome": "Maria Souza",
     "evento": "Aniversário Infantil",
     "servicos": [
@@ -27,7 +462,7 @@
     "status": "confirmada"
   },
   {
-    "id": 3,
+    "id": 34,
     "nome": "Ana Costa",
     "evento": "Casamento",
     "servicos": [
@@ -41,7 +476,7 @@
     "status": "pendente"
   },
   {
-    "id": 4,
+    "id": 35,
     "nome": "Carlos Pereira",
     "evento": "Formatura",
     "servicos": [
@@ -55,7 +490,7 @@
     "status": "cancelada"
   },
   {
-    "id": 5,
+    "id": 36,
     "nome": "Juliana Lima",
     "evento": "Aniversário Adulto",
     "servicos": [
@@ -69,7 +504,7 @@
     "status": "confirmada"
   },
   {
-    "id": 6,
+    "id": 37,
     "nome": "Fernando Alves",
     "evento": "Evento Corporativo",
     "servicos": [
@@ -79,22 +514,6 @@
     ],
     "total": 1800,
     "data": "2025-12-20",
-    "horario": "Manhã",
-    "status": "pendente"
-  },
-  {
-    "id": 7,
-    "nome": "Ana Luiza",
-    "email": "ann@gmail.com",
-    "evento": "Aniversário Infantil – R$ 350",
-    "servicos": [
-      "Gás de Cozinha – R$ 50",
-      "Freezer – R$ 30",
-      "Mesas: 10",
-      "Cadeiras: 40"
-    ],
-    "total": 430,
-    "data": "2025-11-29",
     "horario": "Manhã",
     "status": "pendente"
   }
