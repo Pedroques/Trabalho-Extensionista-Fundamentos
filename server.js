@@ -184,6 +184,17 @@ app.post("/reservas", (req, res) => {
     });
 });
 
+// ========================== SERVIR IMAGENS MANUALMENTE (Railway) ==========================
+app.get("/assets/img/:file", (req, res) => {
+    const filePath = path.join(IMG_DIR, req.params.file);
+
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send("Imagem não encontrada");
+    }
+
+    res.sendFile(filePath);
+});
+
 // ========================== STATIC SEMPRE POR ÚLTIMO ==========================
 app.use(express.static(path.join(__dirname, "public")));
 
