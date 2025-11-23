@@ -185,7 +185,7 @@ app.post("/reservas", (req, res) => {
 });
 
 // ========================== STATIC SEMPRE POR ÚLTIMO ==========================
-app.use(express.static(path.join(__dirname, "public/assets")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ========================== INICIAR SERVIDOR ==========================
 app.listen(PORT, () =>
