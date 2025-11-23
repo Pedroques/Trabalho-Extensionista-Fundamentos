@@ -24,11 +24,10 @@ if (!fs.existsSync(RESERVAS_JSON)) fs.writeFileSync(RESERVAS_JSON, "[]");
 
 // ========================== MIDDLEWARES ==========================
 app.use(cors({
-    origin: "*",   // Ajuste depois se quiser restringir
+    origin: "*",
     methods: ["GET", "POST"]
 }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
 
 // ========================== FUNÇÕES UTILITÁRIAS ==========================
 function lerJSON(file) {
@@ -118,6 +117,7 @@ app.get("/reservas", (req, res) => {
     res.json(reservas);
 });
 
+// Atualiza TODAS
 app.post("/reservas/atualizar", (req, res) => {
     const novasReservas = req.body;
     if (!Array.isArray(novasReservas))
@@ -130,5 +130,38 @@ app.post("/reservas/atualizar", (req, res) => {
     res.json({ status: "ok", mensagem: "Reservas atualizadas com sucesso!" });
 });
 
+// -------- NOVA RESERVA --------
+app.post("/reservas", (req, res) => {
+    const reservas = lerJSON(RESERVAS_JSON);
+    const novaReserva = req.body;
+
+    if (!novaReserva.nome || !novaReserva.email || !novaReserva.evento) {
+        return res.status(400).json({
+            status: "erro",
+            mensagem: "Dados incompletos para criar reserva."
+        });
+    }
+
+    novaReserva.id = reservas.length > 0
+        ? reservas[reservas.length - 1].id + 1
+        : 1;
+
+    novaReserva.status = "pendente";
+
+    reservas.push(novaReserva);
+    salvarJSON(RESERVAS_JSON, reservas);
+
+    res.json({
+        status: "ok",
+        mensagem: "Reserva salva com sucesso!",
+        reserva: novaReserva
+    });
+});
+
+// ========================== STATIC SEMPRE POR ÚLTIMO ==========================
+app.use(express.static(path.join(__dirname, "public/assets")));
+
 // ========================== INICIAR SERVIDOR ==========================
-app.listen(PORT, () => console.log(`API rodando na porta ${PORT}`));
+app.listen(PORT, () =>
+    console.log(`API rodando na porta ${PORT}`)
+);

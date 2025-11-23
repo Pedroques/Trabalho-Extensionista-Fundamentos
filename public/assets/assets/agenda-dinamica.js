@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector("button[onclick='enviarWhatsApp()']");
+  btn.disabled = false;
+});
+
 let dataAtual = new Date();
 let datasIndisponiveis = [];
 
@@ -237,9 +242,22 @@ document.addEventListener("change", e => {
 // ============================
 // 5) WHATSAPP
 // ============================
-function enviarWhatsApp() {
-  const numero = "5531996784862";
+async function enviarWhatsApp() {
+  const numero = "5531993287882";
 
+  // -------------------------------
+  // VALIDAR NOME E E-MAIL
+  // -------------------------------
+  const nome = document.getElementById("nomeCliente").value.trim();
+  const email = document.getElementById("emailCliente").value.trim();
+
+  if (!nome) return alert("Por favor, preencha seu nome.");
+  if (!email) return alert("Por favor, preencha seu e-mail.");
+  if (!email.includes("@")) return alert("Digite um e-mail válido.");
+
+  // -------------------------------
+  // VALIDAR DATA E HORÁRIO
+  // -------------------------------
   const dia = document.querySelector(".day.selected");
   if (!dia) return alert("Selecione uma data.");
 
@@ -249,41 +267,76 @@ function enviarWhatsApp() {
   const horario = document.getElementById("horario").value;
   if (!horario) return alert("Selecione o horário.");
 
+  // -------------------------------
+  // CAPTURAR DADOS DO EVENTO
+  // -------------------------------
   const tipoEventoTexto = document.getElementById("tipoEvento").selectedOptions[0].text;
-  const valorEvento = document.getElementById("valorLocacaoResumo").innerText;
+  const valorEvento = Number(document.getElementById("valorLocacaoResumo").innerText);
 
-  let servicos = [];
+  let servicosSelecionados = [];
   document.querySelectorAll(".serv:checked").forEach(s => {
-    servicos.push("- " + s.parentElement.innerText.trim());
+    servicosSelecionados.push(s.parentElement.innerText.trim());
   });
 
   const rechaud = document.getElementById("rechaud").value;
-  if (rechaud > 0) servicos.push("- Rechaud");
+  if (rechaud > 0) servicosSelecionados.push("Rechaud");
 
-  // Mesas/cadeiras
+  // Mesas / Cadeiras
   const mesas = document.getElementById("mesas").value;
   const cadeiras = document.getElementById("cadeiras").value;
 
-  servicos.push(`- Mesas: ${mesas}`);
-  servicos.push(`- Cadeiras: ${cadeiras}`);
+  servicosSelecionados.push(`Mesas: ${mesas}`);
+  servicosSelecionados.push(`Cadeiras: ${cadeiras}`);
 
-  const total = document.getElementById("totalValor").innerText;
+  const total = Number(document.getElementById("totalValor").innerText);
 
+  // -------------------------------
+// SALVAR NO backend (server.js)
+// -------------------------------
+const novaReserva = {
+  nome,
+  email,
+  evento: tipoEventoTexto,
+  servicos: servicosSelecionados,
+  total,
+  data: dataISO,
+  horario,
+  status: "pendente"
+};
+
+try {
+  await fetch("/reservas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(novaReserva)
+  });
+} catch (err) {
+  console.error("Erro ao salvar reserva:", err);
+  alert("Não foi possível salvar sua reserva. Tente novamente.");
+  return;
+}
+
+  // -------------------------------
+  // MENSAGEM PARA O WHATSAPP
+  // -------------------------------
   const mensagem =
 `Olá! Quero fazer uma reserva.
+
+👤 *Nome:* ${nome}
+📧 *E-mail:* ${email}
 
 📅 *Data:* ${dataBR}
 ⏰ *Horário:* ${horario}
 
 🎉 *Tipo de Evento:* ${tipoEventoTexto}
-💰 *Valor da Locação:* R$ ${valorEvento}
+💰 *Locação:* R$ ${valorEvento}
 
-🛠 *Serviços adicionais:*
-${servicos.length ? servicos.join("\n") : "- Nenhum"}
+🛠 *Serviços:*
+${servicosSelecionados.join("\n")}
 
 💵 *Total:* R$ ${total}
 
-Pode confirmar a disponibilidade?`;
+Acabei de enviar minha solicitação pelo site 😊`;
 
   const texto = encodeURIComponent(mensagem);
 
@@ -298,13 +351,13 @@ Pode confirmar a disponibilidade?`;
   }
 
   const win = window.open(link1, "_blank");
-
   setTimeout(() => {
     if (!win || win.closed || typeof win.closed === "undefined") {
       window.location.href = link2;
     }
   }, 500);
 }
+
 
 // ========== INICIALIZAÇÃO ==========
 (async function init() {

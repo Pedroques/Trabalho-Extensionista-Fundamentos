@@ -1,173 +1,244 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenda</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/agenda.css" />
+    <link rel="icon" href="img/iconeLogo.png" type="image/png" />
+  </head>
 
-  <link rel="stylesheet" href="css/agenda.css" />
-  <link rel="icon" href="img/iconeLogo.png" type="image/png" />
-</head>
+  <body>
+    <!-- NAVBAR -->
+    <header>
+      <nav class="navbarEdit navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" id="imgLogo" alt="Logo" />
+          </a>
 
-<body>
-  <!-- NAVBAR -->
-  <header>
-    <nav class="navbarEdit navbar navbar-expand-lg bg-primary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="img/logo.png" id="imgLogo" alt="Logo" />
-        </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" id="homeNavBar" href="index.html">Página Principal</a>
-            <a class="nav-link" id="agendaNavBar" href="agenda.html">Agenda</a>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" id="homeNavBar" href="index.html"
+                >Página Principal</a
+              >
+              <a class="nav-link" id="agendaNavBar" href="agenda.html"
+                >Agenda</a
+              >
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main>
-    <div class="container py-5">
-      <h2 class="mb-4 text-center">Reserva do Salão de Festas</h2>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+      <div class="container py-5">
+        <h2 class="mb-4 text-center">Reserva do Salão de Festas</h2>
 
-      <div class="row g-4">
-        <!-- COLUNA CALENDÁRIO -->
-        <div class="col-md-6">
-          <div class="card-custom">
-            <h4 id="tituloData">1. Selecione a Data</h4>
+        <!-- 0. DADOS DO CLIENTE -->
+        <h4 class="mt-4">Informações do Cliente</h4>
 
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <button class="btn btn-outline-primary btn-sm" onclick="mudarMes(-1)">
-                ◀
-              </button>
-              <h5 id="mesAno"></h5>
-              <button class="btn btn-outline-primary btn-sm" onclick="mudarMes(1)">
-                ▶
-              </button>
-            </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label class="fw-bold label-dourado">Nome Completo:</label>
+            <input
+              type="text"
+              id="nomeCliente"
+              class="form-control shadow-sm"
+              placeholder="Seu nome"
+              required
+            />
+          </div>
 
-            <div id="calendar"></div>
-
-            <h5 class="mt-4">Escolha o horário:</h5>
-            <select id="horario" class="form-select shadow-sm">
-              <option value="">Selecione...</option>
-              <option value="Manhã">Manhã</option>
-              <option value="Tarde">Tarde</option>
-              <option value="Noite">Noite</option>
-            </select>
+          <div class="col-md-6">
+            <label class="fw-bold label-dourado">E-mail:</label>
+            <input
+              type="email"
+              id="emailCliente"
+              class="form-control shadow-sm"
+              placeholder="Seu e-mail"
+              required
+            />
           </div>
         </div>
 
-        <!-- COLUNA SERVIÇOS / TOTAL -->
-        <div class="col-md-6">
-          <div class="card-custom">
-            <h4>2. Tipo de Evento</h4>
+        <hr class="my-4" />
 
-            <select id="tipoEvento" class="form-select shadow-sm mb-4" onchange="atualizarTotal()"></select>
+        <div class="row g-4">
+          <!-- COLUNA CALENDÁRIO -->
+          <div class="col-md-6">
+            <div class="card-custom">
+              <h4 id="tituloData">1. Selecione a Data</h4>
 
-            <div class="price-box mt-3">
-              <h5>💰 Valor da Locação</h5>
-              <h4>R$ <span id="valorLocacaoResumo">0</span>,00</h4>
-            </div>
-
-            <h4 class="mt-4">3. Serviços Adicionais</h4>
-
-            <div id="listaServicos" class="mt-3"></div>
-
-            <!-- 4. MESAS E CADEIRAS -->
-            <h4 class="mt-4">4. Mesas e Cadeiras</h4>
-
-            <div class="row mt-3">
-              <!-- MESAS -->
-              <div class="col-md-6">
-                <label id="labelMesas" class="fw-bold">Mesas:</label>
-                <input type="number" id="mesas" class="form-control shadow-sm" value="0" min="0"
-                  oninput="atualizarTotal()" />
-                <small id="mesasInfo" class="color: #fff;">Carregando...</small>
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  onclick="mudarMes(-1)"
+                >
+                  ◀
+                </button>
+                <h5 id="mesAno"></h5>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  onclick="mudarMes(1)"
+                >
+                  ▶
+                </button>
               </div>
 
-              <!-- CADEIRAS -->
-              <div class="col-md-6">
-                <label id="labelCadeiras" class="fw-bold">Cadeiras:</label>
-                <input type="number" id="cadeiras" class="form-control shadow-sm" value="0" min="0"
-                  oninput="atualizarTotal()" />
-                <small id="cadeirasInfo" class="color: #fff;">Carregando...</small>
+              <div id="calendar"></div>
+
+              <h5 class="mt-4">Escolha o horário:</h5>
+              <select id="horario" class="form-select shadow-sm">
+                <option value="">Selecione...</option>
+                <option value="Manhã">Manhã</option>
+                <option value="Tarde">Tarde</option>
+                <option value="Noite">Noite</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- COLUNA SERVIÇOS / TOTAL -->
+          <div class="col-md-6">
+            <div class="card-custom">
+              <h4>2. Tipo de Evento</h4>
+
+              <select
+                id="tipoEvento"
+                class="form-select shadow-sm mb-4"
+                onchange="atualizarTotal()"
+              ></select>
+
+              <div class="price-box mt-3">
+                <h5>💰 Valor da Locação</h5>
+                <h4>R$ <span id="valorLocacaoResumo">0</span>,00</h4>
               </div>
-            </div>
 
-            <!-- PREÇO EXTRAS -->
-            <div class="mt-3">
-              <p class="mb-1">
-                Mesas extras: R$
-                <span id="mesasExtrasValor">0</span>
-              </p>
-              <p class="mb-1">
-                Cadeiras extras: R$
-                <span id="cadeirasExtrasValor">0</span>
-              </p>
-            </div>
+              <h4 class="mt-4">3. Serviços Adicionais</h4>
 
-            <!-- RECHAUD (OBRIGATÓRIO EXISTER!) -->
-            <label class="mt-4 fw-bold">Rechaud Banho Maria:</label>
-            <select id="rechaud" class="form-select shadow-sm mt-1"></select>
+              <div id="listaServicos" class="mt-3"></div>
 
-            <!-- TOTAL -->
-            <div class="price-box mt-4">
-              <h5>Total da Reserva</h5>
+              <!-- 4. MESAS E CADEIRAS -->
+              <h4 class="mt-4">4. Mesas e Cadeiras</h4>
 
-              <p class="mb-1">
-                Locação: R$ <span id="valorLocacaoResumoTotal">0</span>
-              </p>
-              <p class="mb-1">
-                Serviços: R$ <span id="servicosValor">0</span>
-              </p>
+              <div class="row mt-3">
+                <!-- MESAS -->
+                <div class="col-md-6">
+                  <label id="labelMesas" class="fw-bold">Mesas:</label>
+                  <input
+                    type="number"
+                    id="mesas"
+                    class="form-control shadow-sm"
+                    value="0"
+                    min="0"
+                    oninput="atualizarTotal()"
+                  />
+                  <small id="mesasInfo" class="color: #fff;"
+                    >Carregando...</small
+                  >
+                </div>
 
-              <h4>Total: R$ <span id="totalValor">0</span></h4>
+                <!-- CADEIRAS -->
+                <div class="col-md-6">
+                  <label id="labelCadeiras" class="fw-bold">Cadeiras:</label>
+                  <input
+                    type="number"
+                    id="cadeiras"
+                    class="form-control shadow-sm"
+                    value="0"
+                    min="0"
+                    oninput="atualizarTotal()"
+                  />
+                  <small id="cadeirasInfo" class="color: #fff;"
+                    >Carregando...</small
+                  >
+                </div>
+              </div>
 
-              <button class="btn btn-primary mt-3 w-100" onclick="enviarWhatsApp()">
-                Continuar para WhatsApp
-              </button>
+              <!-- PREÇO EXTRAS -->
+              <div class="mt-3">
+                <p class="mb-1">
+                  Mesas extras: R$
+                  <span id="mesasExtrasValor">0</span>
+                </p>
+                <p class="mb-1">
+                  Cadeiras extras: R$
+                  <span id="cadeirasExtrasValor">0</span>
+                </p>
+              </div>
+
+              <!-- RECHAUD (OBRIGATÓRIO EXISTER!) -->
+              <label class="mt-4 fw-bold">Rechaud Banho Maria:</label>
+              <select id="rechaud" class="form-select shadow-sm mt-1"></select>
+
+              <!-- TOTAL -->
+              <div class="price-box mt-4">
+                <h5>Total da Reserva</h5>
+
+                <p class="mb-1">
+                  Locação: R$ <span id="valorLocacaoResumoTotal">0</span>
+                </p>
+                <p class="mb-1">
+                  Serviços: R$ <span id="servicosValor">0</span>
+                </p>
+
+                <h4>Total: R$ <span id="totalValor">0</span></h4>
+
+                <button
+                  class="btn btn-primary mt-3 w-100"
+                  onclick="enviarWhatsApp()"
+                  disabled
+                >
+                  Continuar para WhatsApp
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- RODAPÉ -->
-  <footer class="rodape">
-    <div class="rodape-container">
-      <div class="rodape-section contato">
-        <h3>Contato</h3>
-        <p>📍 R. Sr. dos Passos, 540 - Brasília, Sarzedo - MG</p>
-        <p>📞 (31) 99678-4862</p>
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+      <div class="rodape-container">
+        <div class="rodape-section contato">
+          <h3>Contato</h3>
+          <p>📍 R. Sr. dos Passos, 540 - Brasília, Sarzedo - MG</p>
+          <p>📞 (31) 99678-4862</p>
+        </div>
+
+        <div class="redes">
+          <h3>Siga-nos</h3>
+          <a href="https://www.instagram.com/lounge_gourmet_/" target="_blank">
+            <img src="img/insta.png" alt="Instagram" class="iconeRede" />
+          </a>
+        </div>
       </div>
 
-      <div class="redes">
-        <h3>Siga-nos</h3>
-        <a href="https://www.instagram.com/lounge_gourmet_/" target="_blank">
-          <img src="img/insta.png" alt="Instagram" class="iconeRede" />
-        </a>
+      <div class="copyright">
+        <p>© 2025 Lounge Gourmet. Todos os direitos reservados.</p>
       </div>
-    </div>
+    </footer>
 
-    <div class="copyright">
-      <p>© 2025 Lounge Gourmet. Todos os direitos reservados.</p>
-    </div>
-  </footer>
-
-  <script src="assets/agenda-dinamica.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+    <script src="assets/agenda-dinamica.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
