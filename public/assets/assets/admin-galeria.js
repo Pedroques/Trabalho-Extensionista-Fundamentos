@@ -66,7 +66,7 @@ async function uploadFotos() {
 
     const status = document.getElementById("uploadStatus");
     status.textContent = "Enviando...";
-    status.style.color = "#ee8f22"; // cor laranja
+    status.style.color = "#f3b76a";
 
     const fd = new FormData();
     for (let i = 0; i < files.length; i++) {
