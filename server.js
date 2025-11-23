@@ -73,7 +73,7 @@ const upload = multer({ storage });
 // -------- GALERIA --------
 app.post("/upload", upload.array("fotos[]"), (req, res) => {
     const galeria = lerJSON(GALERIA_JSON);
-    req.files.forEach(f => galeria.push(`/img/${f.filename}`));
+    req.files.forEach(f => galeria.push(`/assets/img/${f.filename}`));
     salvarJSON(GALERIA_JSON, galeria);
     res.json({ status: "ok", galeria });
 });
@@ -94,7 +94,7 @@ app.post("/substituir", upload.single("foto"), (req, res) => {
     const oldPath = path.join(IMG_DIR, path.basename(old));
     if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
 
-    galeria[index] = `/img/${req.file.filename}`;
+    galeria[index] = `/assets/img/${req.file.filename}`;
     salvarJSON(GALERIA_JSON, galeria);
 
     res.json({ status: "ok", galeria });
@@ -185,7 +185,7 @@ app.post("/reservas", (req, res) => {
 });
 
 // ========================== STATIC SEMPRE POR ÚLTIMO ==========================
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ========================== INICIAR SERVIDOR ==========================
 app.listen(PORT, () =>
