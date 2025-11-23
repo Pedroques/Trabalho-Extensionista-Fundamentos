@@ -1,5 +1,6 @@
 let eventos = [];
 let servicos = [];
+let mesasCadeiras = [];
 
 const API = "https://trabalho-extensionista-fundamentos-production.up.railway.app";
 
@@ -12,20 +13,33 @@ function carregarPrecos() {
         })
         .then(data => {
             eventos = data.eventos || [];
-            servicos = data.servicos || [];
+
+            servicos = [];
+            mesasCadeiras = [];
+
+            (data.servicos || []).forEach(s => {
+                if (s.incluidas !== undefined && s.extras !== undefined && s.preco_extra !== undefined) {
+                    mesasCadeiras.push(s);
+                } else {
+                    servicos.push(s);
+                }
+            });
+
             atualizarTabelas();
         })
         .catch(err => console.error("Erro ao carregar preços:", err));
 }
 
-// Renderizar tabelas
 function atualizarTabelas() {
     const tEventos = document.getElementById("tabelaEventos");
     const tServicos = document.getElementById("tabelaServicos");
+    const tMesas = document.getElementById("tabelaItens");
 
     tEventos.innerHTML = "";
     tServicos.innerHTML = "";
+    tMesas.innerHTML = "";
 
+    // EVENTOS
     eventos.forEach(e => {
         tEventos.innerHTML += `
             <tr>
@@ -44,6 +58,7 @@ function atualizarTabelas() {
         `;
     });
 
+    // SERVIÇOS SIMPLES
     servicos.forEach(s => {
         tServicos.innerHTML += `
             <tr>
@@ -61,6 +76,25 @@ function atualizarTabelas() {
             </tr>
         `;
     });
+
+    // MESAS E CADEIRAS
+    mesasCadeiras.forEach(m => {
+        tMesas.innerHTML += `
+            <tr>
+                <td>${m.nome}</td>
+
+                <td><input type="number" class="form-control" value="${m.incluidas}"
+                    onchange="editarMesas(${m.id}, 'incluidas', Number(this.value))"></td>
+
+                <td><input type="number" class="form-control" value="${m.extras}"
+                    onchange="editarMesas(${m.id}, 'extras', Number(this.value))"></td>
+
+                <td><input type="number" class="form-control" value="${m.preco_extra}"
+                    onchange="editarMesas(${m.id}, 'preco_extra', Number(this.value))"></td>
+
+            </tr>
+        `;
+    });
 }
 
 // Editar
@@ -70,6 +104,10 @@ function editarEvento(id, campo, valor) {
 
 function editarServico(id, campo, valor) {
     servicos = servicos.map(s => s.id === id ? { ...s, [campo]: valor } : s);
+}
+
+function editarMesas(id, campo, valor) {
+    mesasCadeiras = mesasCadeiras.map(m => m.id === id ? { ...m, [campo]: valor } : m);
 }
 
 // Adicionar
@@ -100,26 +138,28 @@ function removerServico(id) {
 
 // Salvar no servidor
 function salvarPrecos() {
-    const dados = { eventos, servicos };
+    const dados = {
+        eventos,
+        servicos: [...servicos, ...mesasCadeiras] // junta tudo novamente
+    };
 
     fetch(`${API}/precos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados)
     })
-    .then(r => r.json())
-    .then(resp => {
-        if (resp.status === "ok") {
-            alert(resp.mensagem || "Preços atualizados!");
-        } else {
-            alert("Erro: " + (resp.mensagem || "Falha ao salvar"));
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Erro ao salvar preços");
-    });
+        .then(r => r.json())
+        .then(resp => {
+            if (resp.status === "ok") {
+                alert(resp.mensagem || "Preços atualizados!");
+            } else {
+                alert("Erro: " + (resp.mensagem || "Falha ao salvar"));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erro ao salvar preços");
+        });
 }
 
-// Carregar ao iniciar
 carregarPrecos();

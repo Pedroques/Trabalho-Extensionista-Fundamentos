@@ -186,6 +186,11 @@ h2, h4, h5 {
   margin: 0 auto;
 }
 
+.copyright {
+    border-top: 1px solid #fab260;
+    padding-top: 10px;
+}
+
 .iconeRede {
   width: 50px;
   transition: 0.3s;

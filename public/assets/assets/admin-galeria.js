@@ -1,23 +1,16 @@
 // admin-galeria.js
 // Gerencia galeria: carregar, enviar, excluir e substituir
 
-// O galeria.json continua no Vercel (somente leitura)
-const GALERIA_JSON = "/assets/data/galeria.json";
-
-// API do Railway (leitura/escrita de imagens)
 const API = "https://trabalho-extensionista-fundamentos-production.up.railway.app";
-
 let fotos = [];
 
-// Carrega galeria do JSON público (somente leitura)
+// Carrega galeria do servidor
 async function carregarFotos() {
     try {
-        const res = await fetch(GALERIA_JSON + "?t=" + Date.now());
-        if (!res.ok) throw new Error("Falha ao buscar galeria");
-        
-        const data = await res.json();
-        fotos = Array.isArray(data) ? data : [];
-        
+        const res = await fetch(`${API}/galeria`);
+        if (!res.ok) throw new Error(`Falha ao buscar galeria: ${res.status}`);
+
+        fotos = await res.json();
         atualizarGaleria();
     } catch (err) {
         console.error("Erro ao carregar galeria:", err);
@@ -26,7 +19,6 @@ async function carregarFotos() {
     }
 }
 
-// Renderiza thumbnails
 function atualizarGaleria() {
     const container = document.getElementById("galeriaContainer");
     container.innerHTML = "";
@@ -74,6 +66,7 @@ async function uploadFotos() {
 
     const status = document.getElementById("uploadStatus");
     status.textContent = "Enviando...";
+    status.style.color = "#ee8f22"; // cor laranja
 
     const fd = new FormData();
     for (let i = 0; i < files.length; i++) {
@@ -102,6 +95,7 @@ async function uploadFotos() {
         alert("Erro ao enviar imagens. Veja console.");
     } finally {
         status.textContent = "";
+        status.style.color = "";
         input.value = "";
     }
 }
@@ -178,5 +172,4 @@ async function uploadSubstituicao(event, index) {
     }
 }
 
-// Inicializa
 carregarFotos();

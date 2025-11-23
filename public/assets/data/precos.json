@@ -46,6 +46,7 @@
       "preco": 450
     }
   ],
+
   "servicos": [
     {
       "id": 1,
@@ -88,6 +89,11 @@
       "preco": 0
     },
     {
+      "id": 9,
+      "nome": "Rechaud Banho Maria - Redondo Inox 7L ou Retangular 9L",
+      "preco": 50
+    },
+    {
       "id": 10,
       "nome": "Mesas",
       "incluidas": 10,
@@ -100,12 +106,6 @@
       "incluidas": 40,
       "extras": 32,
       "preco_extra": 2
-    },
-
-    {
-      "id": 9,
-      "nome": "Rechaud Banho Maria - Redondo Inox 7L ou Retangular 9L",
-      "preco": 50
     }
   ]
 }

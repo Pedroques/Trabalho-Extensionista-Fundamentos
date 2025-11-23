@@ -1,6 +1,6 @@
 /* ------------------- Geral Início ------------------- */
 body {
-    background-color: #ffffff;
+    background-color: #0e0e0e;
     font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
 }
 
@@ -19,10 +19,9 @@ header {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    background: #ffffff;
     padding: 0 15px;
-    border-left: 2px solid #ee8f227d;
-    border-right: 2px solid #ee8f227d;
+    border-left: 2px;
+    border-right: 2px;
     padding-top: 90px;
     text-align: center;
 }
@@ -35,8 +34,6 @@ iframe {
     margin: 0 auto;
 }
 
-
-
 /* -------------------- Geral Fim -------------------- */
 
 
@@ -45,28 +42,21 @@ iframe {
     max-width: 180px;
 }
 
-
 #homeNavBar,
 #agendaNavBar {
     color: white;
     font-size: 30px;
     margin-left: 15px;
-    transition: transform 0.6s ease;
-    transform: scale(1);
-
+    transition: transform 0.3s ease;
 }
 
 #homeNavBar:hover,
 #agendaNavBar:hover {
-    transition: color 0.5s transform;
-    transition: transform 0.5s ease;
-    color: #fab260;
-    transform: scale(1.1);
+    color: #ffcc80 !important;
 }
 
 #imgLogo {
     transition: transform 0.6s ease;
-
 }
 
 #imgLogo:hover {
@@ -75,16 +65,14 @@ iframe {
 }
 
 .navbarEdit {
+    background-color: #0d47a1 !important;
     border-bottom: 3px solid #ee8f22;
 }
 
 /* -------------------- NavBar Fim -------------------- */
 
 
-
 /* -------------------- Main Início -------------------- */
-
-
 
 #cards {
     padding: 0 !important;
@@ -184,7 +172,7 @@ main h1 {
 /* -------------------- Footer Início -------------------- */
 /* -------------------- Footer -------------------- */
 .rodape {
-    background-color: #0d6efd;
+    background-color: #0d47a1;
     color: white;
     padding: 40px 20px 20px 20px;
     font-family: 'New Century Schoolbook', TeX Gyre Schola, serif;
@@ -236,13 +224,6 @@ main h1 {
 /* -------------------- Media Query Início -------------------- */
 
 @media screen and (max-width: 720px) {
-    .navbarEdit {
-        text-align: center;
-    }
-
-    #homeNavBar {
-        border-bottom: 2px #ee8f22 solid;
-    }
 
     #carouselExampleAutoplaying .carousel-item {
         max-height: 360px;

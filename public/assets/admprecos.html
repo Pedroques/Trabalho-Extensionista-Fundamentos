@@ -16,36 +16,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <link rel="icon" href="img/logo.png" type="image/png">
+
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR PADRÃO -->
-    <nav class="navbar navbar-expand-lg navbar-dark px-4">
-        <a class="navbar-brand fw-bold fs-3 text-warning">Lounge Gourmet</a>
+    <header>
+        <nav class="navbarEdit navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="img/logo.png" id="imgLogo" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+                        <a class="nav-link" id="agendaNavBar" href="/assets/admdashboard.html">Painel Administrativo</a>
+                        </li>
+                        <a class="nav-link" id="agendaNavBar" href="/assets/admreservas.html">Reservas</a></li>
+                        <a class="nav-link" id="agendaNavBar" href="/assets/admprecos.html">Preços</a></li>
+                        <a class="nav-link" id="agendaNavBar" href="/assets/admgaleria.html">Galeria</a></li>
+                        <a class="nav-link" id="agendaNavBar" href="/assets/admarrecadacao.html">Arrecadação</a>
 
-                <li class="nav-item"><a class="nav-link" href="/assets/admndashboard.html">Painel Administrativo</a></li>
-                <li class="nav-item"><a class="nav-link" href="/assets/admreservas.html">Reservas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/assets/admprecos.html">Preços</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/assets/admgaleria.html">Galeria</a></li>
-
-            </ul>
-        </div>
-    </nav>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="container py-5">
 
-        <h2 class="fw-bold mb-3">Gerenciar Preços e Serviços</h2>
-        <p class="text-muted">Atualize os valores dos eventos e os adicionais opcionais.</p>
+        <h2 class="fw-bold mb-3" style="color: white;">Gerenciar Preços e Serviços</h2>
+        <p class="text-muted-white">Atualize os valores dos eventos, serviços e itens especiais.</p>
 
         <!-- TIPOS DE EVENTO -->
         <div class="card shadow-sm mb-4">
@@ -72,7 +78,7 @@
         </div>
 
         <!-- SERVIÇOS OPCIONAIS -->
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-4">
             <div class="card-header fw-bold">Serviços Adicionais</div>
             <div class="card-body">
 
@@ -95,6 +101,27 @@
             </div>
         </div>
 
+        <!-- MESAS E CADEIRAS (ITENS ESPECIAIS) -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header fw-bold">Mesas e Cadeiras (Itens)</div>
+            <div class="card-body">
+
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Item</th>
+                            <th>Incluídas</th>
+                            <th>Extras</th>
+                            <th>Preço Extra (R$)</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaItens"></tbody>
+                </table>
+
+            </div>
+        </div>
+
         <div class="text-end mt-4">
             <button class="btn btn-success px-4 py-2" onclick="salvarPrecos()">
                 <i class="bi bi-save"></i> Salvar Alterações
@@ -102,6 +129,13 @@
         </div>
 
     </div>
+
+    <!-- FOOTER PADRÃO -->
+    <footer class="rodape">
+        <div class="copyright">
+            <p>© 2025 Lounge Gourmet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

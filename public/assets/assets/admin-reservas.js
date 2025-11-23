@@ -121,5 +121,4 @@ function filtrarReservas() {
     atualizarTabela(filtrado);
 }
 
-// Carregar ao iniciar
 carregarReservas();

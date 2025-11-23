@@ -58,6 +58,11 @@ app.post("/upload", upload.array("fotos[]"), (req, res) => {
     res.json({ status: "ok", galeria });
 });
 
+app.get("/galeria", (req, res) => {
+    const galeria = lerJSON(GALERIA_JSON);
+    res.json(galeria);
+});
+
 app.post("/substituir", upload.single("foto"), (req, res) => {
     const { old } = req.body;
     if (!req.file) return res.json({ status: "erro", mensagem: "Nenhuma imagem enviada." });
