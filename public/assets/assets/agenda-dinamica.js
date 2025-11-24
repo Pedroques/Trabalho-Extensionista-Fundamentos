@@ -243,7 +243,7 @@ document.addEventListener("change", e => {
 // 5) WHATSAPP
 // ============================
 async function enviarWhatsApp() {
-  const numero = "5531993287882";
+  const numero = "5531996784862";
 
   // -------------------------------
   // VALIDAR NOME E E-MAIL
